@@ -148,6 +148,15 @@ class IsAuthenticated(BasePermission):
         return bool(request.user and request.user.is_authenticated)
 
 
+class IsNotAuthenticated(BasePermission):
+    """
+    Allows access only to not authenticated users.
+    """
+
+    def has_permission(self, request, view):
+        return not bool(request.user and request.user.is_authenticated)
+
+
 class IsAdminUser(BasePermission):
     """
     Allows access only to admin users.
